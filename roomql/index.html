@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>roomQL — Type-Safe Kotlin DSL for Dynamic Room Queries | KotPlat</title>
-<meta name="description" content="roomQL is a type-safe Kotlin DSL for building dynamic Android Room queries at runtime — no raw SQL strings, no reflection. Install via JitPack, see a quick-start example, API overview, and FAQ.">
+<meta name="description" content="roomQL is a type-safe Kotlin DSL for building dynamic Android Room queries at runtime — no raw SQL strings, no reflection. Install from Maven Central, see a quick-start example, API overview, and FAQ.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="KotPlat">
 <meta name="theme-color" content="#14121a">
@@ -124,43 +124,34 @@
       <a href="https://github.com/KotPlat/roomql/blob/master/docs/API.md" style="font-size: 13px; font-weight: 500; text-decoration: none; border: 1px solid #3a3646; padding: 6px 12px; border-radius: 6px; color: #f1eef7;">Full API reference &#8599;</a>
     </div>
 
-    <p style="font-size: 15px; line-height: 1.7; color: #b3aec2;">Room has no good answer for a query whose filters are decided at runtime. Write it as a <code>@Query</code> string and you end up with <code>WHERE (:minAge IS NULL OR age &gt;= :minAge)</code> repeated per filter, with column names the compiler never checks. Write it as overloaded DAO methods and you head toward 2<sup>n</sup> methods. roomQL builds the SQL programmatically instead: you keep Room&rsquo;s <code>@RawQuery</code>, a KSP processor generates a typed <code>Column&lt;T&gt;</code> for every column in your <code>@Entity</code> classes, and a <code>null</code> filter simply drops out of the generated SQL.</p>
+    <p style="font-size: 15px; line-height: 1.7; color: #b3aec2;">A query whose <b style="color:#f1eef7;">filter values</b> vary at runtime already has a static answer in Room: <code>WHERE (:minAge IS NULL OR age &gt;= :minAge)</code>, checked at compile time. A query whose <b style="color:#f1eef7;">structure</b> varies &mdash; which column to sort or group by, whether a join is present, which columns to project &mdash; is harder: SQL can bind a value as a parameter, never an identifier, so a static <code>@Query</code> reaches it only through a <code>CASE</code> ladder, or not at all for a dynamic <code>SELECT</code> list. roomQL covers both with one typed DSL: a KSP processor generates a <code>Column&lt;T&gt;</code> for every column in your <code>@Entity</code> classes, so <code>orderBy</code>, <code>groupBy</code>, <code>join</code>, and <code>select</code> take real, rename-safe Kotlin symbols, and a <code>null</code> filter drops out of the generated SQL. You keep Room&rsquo;s <code>@RawQuery</code>.</p>
 
     <h2 id="installation" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 12px;">Installation</h2>
-    <p style="font-size: 15px; color: #b3aec2;">roomQL publishes through JitPack. Add the repository in <code>settings.gradle.kts</code>:</p>
-    <pre><code>dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://jitpack.io")
-    }
-}</code></pre>
-    <p style="font-size: 15px; color: #b3aec2;">Then declare the three artifacts (version catalog form, <code>gradle/libs.versions.toml</code>):</p>
+    <p style="font-size: 15px; color: #b3aec2;">roomQL is published on Maven Central under <code>io.github.kotplat.roomql</code>. Declare the version catalog entries (<code>gradle/libs.versions.toml</code>):</p>
     <pre><code>[versions]
 roomql = "2.0.0"
 
 [libraries]
-roomql-runtime         = { module = "com.github.ahmednobii.RoomQL:roomql-runtime",         version.ref = "roomql" }
-roomql-runtime-android = { module = "com.github.ahmednobii.RoomQL:roomql-runtime-android", version.ref = "roomql" }
-roomql-ksp-processor   = { module = "com.github.ahmednobii.RoomQL:roomql-ksp-processor",   version.ref = "roomql" }</code></pre>
+roomql-runtime-android = { module = "io.github.kotplat.roomql:runtime-android", version.ref = "roomql" }
+roomql-ksp-processor   = { module = "io.github.kotplat.roomql:ksp-processor",   version.ref = "roomql" }</code></pre>
     <pre><code>plugins {
     id("com.google.devtools.ksp")
 }
 
 dependencies {
-    implementation(libs.roomql.runtime)           // the query { } DSL (pure JVM)
-    implementation(libs.roomql.runtime.android)   // the .toQuery() bridge to Room
+    implementation(libs.roomql.runtime.android)   // .toQuery() bridge; pulls in :runtime
     ksp(libs.roomql.ksp.processor)                // generates the *Table objects
 }</code></pre>
-    <p style="font-size: 15px; color: #b3aec2;">All three are required on Android. <code>:runtime</code> is a plain-JVM module so the DSL stays unit-testable without an emulator; <code>:runtime-android</code> is the thin adapter that turns its output into the <code>SupportSQLiteQuery</code> Room wants.</p>
+    <p style="font-size: 15px; color: #b3aec2;">That is the whole dependency block for Android. <code>runtime-android</code> already depends on <code>runtime</code> (the <code>query { }</code> DSL), so it comes along automatically. The <code>ksp(...)</code> line stays separate because Gradle cannot pull a symbol processor in transitively. Add <code>io.github.kotplat.roomql:runtime</code> directly only if you want the DSL without the Room bridge, for example to unit-test generated SQL on the plain JVM.</p>
 
     <table style="margin-top: 14px;">
       <tr><th>Dependency</th><th>Version</th></tr>
-      <tr><td>Kotlin</td><td>2.0.x</td></tr>
-      <tr><td>KSP</td><td>2.0.21-1.0.28</td></tr>
-      <tr><td>Room</td><td>2.6.x &ndash; 2.7.x</td></tr>
+      <tr><td>Kotlin</td><td>2.0.21 or newer (tested on 2.0.21, 2.1.21, and 2.2.0)</td></tr>
+      <tr><td>KSP</td><td>The version matching your Kotlin. KSP1 and KSP2 both work.</td></tr>
+      <tr><td>Room</td><td>2.6.x &ndash; 2.7.x (tested on 2.6.1 and 2.7.2; KSP2 needs Room 2.7+)</td></tr>
       <tr><td>Android</td><td>minSdk 21+</td></tr>
-      <tr><td>JDK</td><td>17</td></tr>
+      <tr><td>JDK (to run the build)</td><td>17 or newer</td></tr>
+      <tr><td>App Java target</td><td>Any on Android. Pure-JVM use of <code>runtime</code> needs Java 17+.</td></tr>
     </table>
 
     <h2 id="quick-start" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 12px;">Minimal working example</h2>
@@ -202,12 +193,28 @@ fun searchUsers(dao: UserDao, minAge: Int?, status: String?): List&lt;UserEntity
 }</code></pre>
     <p style="font-size: 15px; color: #b3aec2;"><code>searchUsers(dao, 18, "active")</code> runs <code>SELECT * FROM users WHERE age &gt;= ? AND status = ? ORDER BY age DESC LIMIT 20</code>. <code>searchUsers(dao, 18, null)</code> drops the status filter. <code>searchUsers(dao, null, null)</code> drops both &mdash; no <code>if</code> ladders, no <code>IS NULL OR</code> trick.</p>
 
+    <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 12px;">Dynamic structure: a runtime sort column</h2>
+    <p style="font-size: 15px; color: #b3aec2;">A runtime-chosen sort column has a static workaround &mdash; <code>ORDER BY CASE WHEN :sortBy = 'age' THEN age WHEN :sortBy = 'name' THEN name END</code>, bound to a string &mdash; but it becomes hard to maintain once a second axis, such as an optional join or filter, needs to vary with it. roomQL takes a typed column instead:</p>
+    <pre><code>fun sortedUsers(dao: UserDao, sortColumn: Column&lt;*&gt;, direction: SortDirection): List&lt;UserEntity&gt; {
+    val q = query {
+        from(UserEntityTable)
+        orderBy(sortColumn, direction)
+    }
+    return dao.search(q.toQuery())
+}
+
+sortedUsers(dao, UserEntityTable.age, SortDirection.DESC)
+sortedUsers(dao, UserEntityTable.name, SortDirection.ASC)</code></pre>
+    <p style="font-size: 15px; color: #b3aec2;">For a single, fixed set of sort columns, a <code>when</code> dispatch is a good zero-dependency alternative. roomQL pays off when sorting has to compose with an optional join, a runtime <code>groupBy</code>, or a chosen <code>select(...)</code> projection.</p>
+
     <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 12px;">What you get</h2>
     <ul style="font-size: 15px; color: #b3aec2; padding-left: 20px;">
+      <li><b style="color:#f1eef7;">Dynamic query structure, typed.</b> <code>orderBy</code>, <code>groupBy</code>, <code>join</code>, and <code>select</code> take a real <code>Column&lt;T&gt;</code>/<code>Expression&lt;T&gt;</code> instead of a <code>CASE</code> ladder or a bare string.</li>
       <li><b style="color:#f1eef7;">Compile-time safety on column references.</b> Renames and typos fail the build instead of the query.</li>
       <li><b style="color:#f1eef7;">Optional filters that disappear, and say so.</b> <code>IfNotNull</code> operators skip the condition when a value is null; the plain operators are required and won&rsquo;t compile against a nullable value.</li>
-      <li><b style="color:#f1eef7;">A real DSL, not string concatenation.</b> <code>where</code>, <code>or { }</code>, <code>orderBy</code>, <code>limit</code>/<code>offset</code>, <code>groupBy</code>/<code>having</code>, <code>join</code>. Values bind as positional <code>?</code> parameters.</li>
-      <li><b style="color:#f1eef7;">Automatic JOIN column aliasing.</b> Colliding column names across joined tables are aliased so a cursor never silently overwrites a column.</li>
+      <li><b style="color:#f1eef7;">A real DSL, not string concatenation.</b> <code>where</code>, <code>or { }</code>, <code>orderBy</code>, <code>limit</code>/<code>offset</code>, <code>groupBy</code>/<code>having</code>, <code>select</code>, <code>join</code>. Values bind as positional <code>?</code> parameters.</li>
+      <li><b style="color:#f1eef7;">Aggregates and explicit projections.</b> <code>count</code>, <code>countAll</code>, <code>sum</code>, <code>avg</code>, <code>min</code>, <code>max</code> work in <code>having { }</code> and <code>orderBy</code>; <code>select(...)</code> projects them or specific columns. <code>@Projection</code> generates a typed factory for a multi-column result class, so a missing field is a compile error.</li>
+      <li><b style="color:#f1eef7;">Automatic JOIN column aliasing.</b> Colliding column names across joined tables are aliased (<code>users.id AS users__id</code>) so a cursor never silently overwrites a column.</li>
       <li><b style="color:#f1eef7;">Works with Room&rsquo;s own <code>@RawQuery</code>.</b> Blocking, <code>suspend</code>, and <code>Flow</code> return types all work.</li>
     </ul>
 
@@ -216,24 +223,30 @@ fun searchUsers(dao: UserDao, minAge: Int?, status: String?): List&lt;UserEntity
     <table>
       <tr><th>Symbol</th><th>Artifact</th><th>What it does</th></tr>
       <tr><td><code>query { }</code></td><td>runtime</td><td>Entry point. Builds and returns a <code>RoomQlQuery</code>.</td></tr>
-      <tr><td><code>QueryBuilder</code></td><td>runtime</td><td>Receiver inside <code>query { }</code>: <code>from</code>, <code>join</code>, <code>where</code>, <code>groupBy</code>, <code>having</code>, <code>orderBy</code>, <code>limit</code>, <code>offset</code>, <code>build</code>.</td></tr>
-      <tr><td><code>eq</code>, <code>gt</code>, <code>gte</code>, <code>lt</code>, <code>lte</code>, <code>notEq</code></td><td>runtime</td><td>Required comparisons &mdash; won&rsquo;t compile against a nullable value.</td></tr>
+      <tr><td><code>QueryBuilder</code></td><td>runtime</td><td>Receiver inside <code>query { }</code>: <code>from</code>, <code>join</code>, <code>where</code>, <code>groupBy</code>, <code>having</code>, <code>select</code>, <code>orderBy</code>, <code>limit</code>, <code>offset</code>, <code>build</code>.</td></tr>
+      <tr><td><code>eq</code>, <code>notEq</code>, <code>gt</code>, <code>gte</code>, <code>lt</code>, <code>lte</code></td><td>runtime</td><td>Required comparisons &mdash; won&rsquo;t compile against a nullable value.</td></tr>
       <tr><td><code>eqIfNotNull</code>, <code>gteIfNotNull</code>, &hellip;</td><td>runtime</td><td>Optional forms. Skip the condition when the value is null.</td></tr>
-      <tr><td><code>like</code>, <code>contains</code>, <code>inList</code>, <code>between</code></td><td>runtime</td><td>Text matching, set membership, and range operators.</td></tr>
+      <tr><td><code>like</code>, <code>contains</code>, <code>inList</code>, <code>between</code></td><td>runtime</td><td>Text matching, set membership, and range operators, with <code>IfNotNull</code> / <code>IfNotEmpty</code> forms where they apply.</td></tr>
+      <tr><td><code>isNull</code>, <code>isNotNull</code></td><td>runtime</td><td>SQL <code>NULL</code> checks &mdash; the two operators that never skip.</td></tr>
+      <tr><td><code>count</code>, <code>countAll</code>, <code>sum</code>, <code>avg</code>, <code>min</code>, <code>max</code></td><td>runtime</td><td>Aggregate expressions for <code>having { }</code>, <code>orderBy</code>, and <code>select</code>.</td></tr>
+      <tr><td><code>select</code>, <code>alias</code></td><td>runtime</td><td>Project specific columns or aggregates instead of whole rows, and name an output column.</td></tr>
+      <tr><td><code>@Projection</code></td><td>runtime / ksp-processor</td><td>Generates a typed factory for a result data class, to spread into <code>select(...)</code>.</td></tr>
       <tr><td><code>Column&lt;T&gt;</code> / <code>EntityTable</code></td><td>runtime</td><td>Generated per-entity typed column references.</td></tr>
+      <tr><td><code>RoomQlQuery</code></td><td>runtime</td><td>The DSL&rsquo;s output: <code>sql</code> plus positional <code>args</code>. Assert on it in plain JVM unit tests.</td></tr>
+      <tr><td><code>RoomQlException</code></td><td>runtime</td><td>Thrown by <code>build()</code> for an invalid query, with the reason in the message.</td></tr>
       <tr><td><code>RoomQlQuery.toQuery()</code></td><td>runtime-android</td><td>Adapts DSL output into the <code>SupportSQLiteQuery</code> Room&rsquo;s <code>@RawQuery</code> accepts.</td></tr>
     </table>
 
     <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 12px;">How roomQL compares</h2>
     <table>
-      <tr><th>Approach</th><th>Columns checked?</th><th>Runtime-optional filters</th></tr>
-      <tr><td><b style="color:#f1eef7;">roomQL</b></td><td>Yes, via generated refs</td><td>Native &mdash; <code>null</code> drops the condition</td></tr>
-      <tr><td>Room <code>@Query</code> string</td><td>No</td><td><code>(:x IS NULL OR col = :x)</code> per filter</td></tr>
-      <tr><td>Overloaded DAO methods</td><td>Via Room&rsquo;s <code>@Query</code> checking</td><td>One method per combination (2<sup>n</sup>)</td></tr>
-      <tr><td>Hand-built <code>SimpleSQLiteQuery</code></td><td>No</td><td>Manual <code>if</code> ladders</td></tr>
-      <tr><td>SQLDelight</td><td>Yes, full SQL verified</td><td>Limited &mdash; dynamic shapes need generated variants</td></tr>
+      <tr><th>Approach</th><th>Whole-query SQL checked?</th><th>Dynamic sort / group column</th><th>Dynamic <code>SELECT</code> list</th><th>Optional filter values</th></tr>
+      <tr><td><b style="color:#f1eef7;">roomQL</b></td><td>No &mdash; <code>@RawQuery</code> skips it; column references are checked</td><td>Typed <code>Column&lt;T&gt;</code></td><td><code>select(...)</code></td><td>Native &mdash; <code>null</code> drops the condition</td></tr>
+      <tr><td>Room <code>@Query</code> string</td><td>Yes, at compile time</td><td><code>CASE WHEN</code> ladder bound to a string</td><td>Not possible</td><td><code>(:x IS NULL OR col = :x)</code> per filter</td></tr>
+      <tr><td>Overloaded DAO methods</td><td>Yes, per method</td><td>One method per column/direction</td><td>One method per shape</td><td>One method per combination (2<sup>n</sup>)</td></tr>
+      <tr><td>Hand-built <code>SimpleSQLiteQuery</code></td><td>No</td><td>Yes, unchecked strings</td><td>Yes, unchecked strings</td><td>Manual <code>if</code> ladders</td></tr>
+      <tr><td>SQLDelight</td><td>Yes, full SQL verified</td><td>Same <code>CASE</code> trick as <code>@Query</code></td><td>Not possible</td><td>Limited &mdash; dynamic shapes need generated variants</td></tr>
     </table>
-    <p style="font-size: 14px; color: #8d87a0;">Use roomQL when you&rsquo;re staying on Room with search-style queries whose filters are decided at runtime. Skip it for static queries (a plain <code>@Query</code> gives full compile-time SQL verification) or for shapes it doesn&rsquo;t build: projections, <code>DISTINCT</code>, aggregates, subqueries, or <code>UNION</code>.</p>
+    <p style="font-size: 14px; color: #8d87a0;">Use roomQL when more than one axis of a query &mdash; sort, grouping, join, projection, filters &mdash; needs to vary together, or when you want one typed vocabulary instead of a <code>CASE</code> ladder for structure and an <code>IS NULL OR</code> ladder for values. Skip it for fully static queries (a plain <code>@Query</code> gives full compile-time SQL verification), for a single small axis a <code>when</code> dispatch already covers, or for shapes it doesn&rsquo;t build: <code>DISTINCT</code>, subqueries, or <code>UNION</code>.</p>
 
     <h2 id="faq" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 16px;">FAQ</h2>
 
@@ -250,16 +263,24 @@ fun searchUsers(dao: UserDao, minAge: Int?, status: String?): List&lt;UserEntity
       <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;">No. The KSP processor generates typed column references at build time; the runtime is a plain string builder over those references, so R8/ProGuard needs no extra keep rules.</p>
     </details>
     <details>
-      <summary>Why three artifacts instead of one?</summary>
-      <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;"><code>roomql-runtime</code> is pure JVM so generated SQL is unit-testable with no emulator. <code>roomql-runtime-android</code> is the thin Android bridge, and <code>roomql-ksp-processor</code> runs at build time only.</p>
+      <summary>Why three modules instead of one?</summary>
+      <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;"><code>runtime</code> is pure JVM so generated SQL is unit-testable with no emulator. <code>runtime-android</code> is the thin Android bridge, and <code>ksp-processor</code> runs at build time only. In practice you declare two dependencies, not three: <code>runtime-android</code> pulls in <code>runtime</code> transitively.</p>
     </details>
     <details>
       <summary>Does roomQL work with Kotlin Multiplatform?</summary>
-      <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;">Not yet. <code>roomql-runtime</code> is a plain JVM module, not a KMP source set, and <code>roomql-runtime-android</code> depends on <code>androidx.sqlite</code>. roomQL targets Android and JVM projects that use Room.</p>
+      <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;">Not yet. <code>runtime</code> is a plain JVM module, not a KMP source set, and <code>runtime-android</code> depends on <code>androidx.sqlite</code>. roomQL targets Android and JVM projects that use Room.</p>
     </details>
     <details>
       <summary>Does roomQL support KAPT?</summary>
       <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;">No &mdash; roomQL ships a KSP processor only. Room itself can still run on KAPT in the same module if you haven&rsquo;t migrated it yet.</p>
+    </details>
+    <details>
+      <summary>Does roomQL validate my SQL at compile time?</summary>
+      <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;">Only the column references. A renamed or deleted column is a compile error, but Room&rsquo;s <code>@RawQuery</code> skips Room&rsquo;s static SQL verification, so a logically wrong query (a bad join predicate, a <code>groupBy</code> that doesn&rsquo;t match the projection) surfaces at runtime. For static queries, a plain <code>@Query</code> remains the safer choice.</p>
+    </details>
+    <details>
+      <summary>Why doesn&rsquo;t my <code>Flow</code> re-emit when the table changes?</summary>
+      <p style="font-size: 14.5px; color: #b3aec2; margin: 10px 0 0;">Room cannot infer which tables a raw query touches, so a <code>Flow</code>-returning <code>@RawQuery</code> must list them: <code>@RawQuery(observedEntities = [UserEntity::class])</code>. This is a Room requirement, not a roomQL one.</p>
     </details>
 
     <p style="font-size: 14px; color: #8d87a0; margin-top: 8px;">More in the <a href="https://github.com/KotPlat/roomql/blob/master/README.md#faq">full FAQ</a> and <a href="https://github.com/KotPlat/roomql/blob/master/docs/USAGE.md">usage guide</a>.</p>
@@ -267,9 +288,9 @@ fun searchUsers(dao: UserDao, minAge: Int?, status: String?): List&lt;UserEntity
     <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 12px;">Modules</h2>
     <table>
       <tr><th>Module</th><th>Artifact</th><th>What it holds</th></tr>
-      <tr><td><code>:runtime</code></td><td><code>roomql-runtime</code></td><td>the <code>query { }</code> DSL, <code>Column&lt;T&gt;</code>, conditions &mdash; pure JVM</td></tr>
-      <tr><td><code>:runtime-android</code></td><td><code>roomql-runtime-android</code></td><td><code>RoomQlQuery.toQuery()</code> &rarr; <code>SupportSQLiteQuery</code></td></tr>
-      <tr><td><code>:ksp-processor</code></td><td><code>roomql-ksp-processor</code></td><td>generates the <code>*Table</code> objects from <code>@Entity</code></td></tr>
+      <tr><td><code>:runtime</code></td><td><code>io.github.kotplat.roomql:runtime</code></td><td>the <code>query { }</code> DSL, <code>Column&lt;T&gt;</code>, conditions &mdash; pure JVM</td></tr>
+      <tr><td><code>:runtime-android</code></td><td><code>io.github.kotplat.roomql:runtime-android</code></td><td><code>RoomQlQuery.toQuery()</code> &rarr; <code>SupportSQLiteQuery</code></td></tr>
+      <tr><td><code>:ksp-processor</code></td><td><code>io.github.kotplat.roomql:ksp-processor</code></td><td>generates the <code>*Table</code> objects from <code>@Entity</code></td></tr>
     </table>
 
     <h2 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; margin: 36px 0 12px;">Contributing &amp; license</h2>
