@@ -30,9 +30,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{color-scheme:dark;--bg:#14121a;--surface:#1b1823;--surface-2:#231d30;--surface-3:#2b233a;--line:rgba(142,131,164,.28);--line-strong:rgba(180,147,240,.48);--text:#f7f4fb;--muted:#c4bdd1;--subtle:#9790a8;--purple:#b493f0;--bright:#d5c1ff;--pink:#f0708a;--green:#79e7af;--max:1160px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 85% 0,rgba(180,147,240,.14),transparent 28%),var(--bg);color:var(--text);font-family:Barlow,system-ui,sans-serif}a{color:var(--bright);text-underline-offset:4px}a:hover{color:#fff}.container{width:min(var(--max),calc(100% - 48px));margin:auto}header{position:sticky;top:0;z-index:10;background:rgba(20,18,26,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;font:700 24px/1 'Barlow Condensed',sans-serif}.brand img{width:34px;height:34px;display:block}.nav-actions{display:flex;align-items:center;gap:18px;font-size:14px}.nav-actions>a:not(.button){color:var(--muted);text-decoration:none}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border:1px solid var(--line);border-radius:10px;color:var(--text)!important;text-decoration:none;font-weight:600;background:rgba(255,255,255,.03)}.button:hover{border-color:var(--purple);background:var(--surface-2)}.button.primary{background:var(--purple);border-color:var(--purple);color:#191421!important}.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:58px}.sidebar{padding-top:48px}.sidebar-inner{position:sticky;top:114px}.side-label{margin:0 0 13px;color:var(--subtle);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.sidebar a{display:block;padding:8px 12px;margin-left:-12px;border-left:1px solid transparent;color:var(--subtle);text-decoration:none;font-size:14px}.sidebar a:hover{border-left-color:var(--purple);color:var(--text);background:rgba(180,147,240,.06)}.content{min-width:0;padding:42px 0 80px}.crumbs{margin-bottom:32px;color:var(--subtle);font-size:13px}.crumbs a{color:var(--subtle)}.hero{position:relative;overflow:hidden;padding:32px;border:1px solid var(--line-strong);border-radius:20px;background:linear-gradient(135deg,rgba(180,147,240,.13),rgba(240,112,138,.06) 60%,rgba(27,24,35,.8));box-shadow:0 25px 70px rgba(0,0,0,.16)}.hero:after{content:"";position:absolute;width:220px;height:220px;right:-70px;top:-100px;border:1px solid rgba(180,147,240,.28);border-radius:50%;box-shadow:0 0 0 28px rgba(180,147,240,.04),0 0 0 58px rgba(180,147,240,.025)}.hero-top{position:relative;z-index:1;display:flex;align-items:center;gap:16px}.room-icon{width:62px;height:62px;flex:none;border-radius:16px;overflow:hidden;border:1px solid rgba(121,231,175,.36);box-shadow:0 10px 25px rgba(0,0,0,.2)}.room-icon svg{display:block}.meta{color:var(--subtle);font-size:13px}.hero h1{margin:22px 0 0;font:700 clamp(58px,8vw,94px)/.86 'Barlow Condensed',sans-serif;letter-spacing:-.04em}.gradient{background:linear-gradient(135deg,var(--text),var(--bright) 55%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}.intro{position:relative;z-index:1;max-width:710px;margin:22px 0 0;color:var(--muted);font-size:20px;line-height:1.55}.actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.section{padding-top:58px;scroll-margin-top:100px}.section h2{margin:0 0 14px;font:700 39px/1 'Barlow Condensed',sans-serif;letter-spacing:-.03em}.section h3{margin:30px 0 10px;font:700 28px/1 'Barlow Condensed',sans-serif}.section>p,.section>ul{color:var(--muted);font-size:15px;line-height:1.72}.callout{margin-top:28px;padding:20px 22px;border:1px solid rgba(180,147,240,.35);border-radius:14px;background:rgba(180,147,240,.08);color:var(--muted);line-height:1.7}.callout strong{color:var(--text)}.install-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.code-card{overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#19161f}.code-label{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--subtle);font-size:12px;font-weight:600}.code-card pre{margin:0;border:0;border-radius:0}.code-card pre,pre{overflow:auto;padding:18px;color:#e9ddff;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}pre{border:1px solid var(--line);border-radius:13px;background:#19161f}code{padding:3px 6px;border-radius:5px;background:var(--surface-3);color:#eadfff;font:0.9em ui-monospace,SFMono-Regular,Consolas,monospace}.code-card code{padding:0;background:transparent}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{color:var(--bright);font-size:12px;letter-spacing:.08em;text-transform:uppercase}td{color:var(--muted)}.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0;list-style:none}.benefits li{padding:17px;border:1px solid var(--line);border-radius:12px;background:rgba(27,24,35,.58);color:var(--muted);line-height:1.6;font-size:14px}.benefits strong{display:block;margin-bottom:5px;color:var(--text)}details{margin:10px 0;padding:16px 18px;border:1px solid var(--line);border-radius:11px;background:rgba(27,24,35,.7)}summary{cursor:pointer;font-weight:600}footer{display:flex;justify-content:space-between;gap:20px;padding:28px 0 40px;border-top:1px solid var(--line);color:var(--subtle);font-size:13px}.footer-links{display:flex;gap:18px}.footer-links a{color:var(--subtle);text-decoration:none}@media(max-width:800px){.container{width:min(var(--max),calc(100% - 32px))}.layout{display:block}.sidebar{display:none}.content{padding-top:32px}.nav-actions>a:not(.button){display:none}.install-grid,.benefits{grid-template-columns:1fr}.hero{padding:24px}.section h2{font-size:35px}.intro{font-size:18px}footer{flex-direction:column;align-items:flex-start}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 85% 0,rgba(180,147,240,.14),transparent 28%),var(--bg);color:var(--text);font-family:Barlow,system-ui,sans-serif}a{color:var(--bright);text-underline-offset:4px}a:hover{color:#fff}.container{width:min(var(--max),calc(100% - 48px));margin:auto}header{position:sticky;top:0;z-index:10;background:rgba(20,18,26,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;font:700 24px/1 'Barlow Condensed',sans-serif}.brand img{width:34px;height:34px;display:block}.nav-actions{display:flex;align-items:center;gap:18px;font-size:14px}.nav-actions>a:not(.button){color:var(--muted);text-decoration:none}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border:1px solid var(--line);border-radius:10px;color:var(--text)!important;text-decoration:none;font-weight:600;background:rgba(255,255,255,.03)}.button:hover{border-color:var(--purple);background:var(--surface-2)}.button.primary{background:var(--purple);border-color:var(--purple);color:#191421!important}.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:58px}.sidebar{padding-top:48px}.sidebar-inner{position:sticky;top:114px}.side-label{margin:0 0 13px;color:var(--subtle);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.sidebar a{display:block;padding:8px 12px;margin-left:-12px;border-left:1px solid transparent;color:var(--subtle);text-decoration:none;font-size:14px}.sidebar a:hover{border-left-color:var(--purple);color:var(--text);background:rgba(180,147,240,.06)}.content{min-width:0;padding:42px 0 80px}.crumbs{margin-bottom:32px;color:var(--subtle);font-size:13px}.crumbs a{color:var(--subtle)}.hero{position:relative;overflow:hidden;padding:32px;border:1px solid var(--line-strong);border-radius:20px;background:linear-gradient(135deg,rgba(180,147,240,.13),rgba(240,112,138,.06) 60%,rgba(27,24,35,.8));box-shadow:0 25px 70px rgba(0,0,0,.16)}.hero:after{content:"";position:absolute;width:220px;height:220px;right:-70px;top:-100px;border:1px solid rgba(180,147,240,.28);border-radius:50%;box-shadow:0 0 0 28px rgba(180,147,240,.04),0 0 0 58px rgba(180,147,240,.025)}.hero-top{position:relative;z-index:1;display:flex;align-items:center;gap:16px}.room-icon{width:62px;height:62px;flex:none;border-radius:16px;overflow:hidden;border:1px solid rgba(121,231,175,.36);box-shadow:0 10px 25px rgba(0,0,0,.2)}.room-icon svg{display:block}.meta{color:var(--subtle);font-size:13px}.hero h1{margin:22px 0 0;font:700 clamp(58px,8vw,94px)/.86 'Barlow Condensed',sans-serif;letter-spacing:-.04em}.gradient{background:linear-gradient(135deg,var(--text),var(--bright) 55%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}.intro{position:relative;z-index:1;max-width:710px;margin:22px 0 0;color:var(--muted);font-size:20px;line-height:1.55}.actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.section{padding-top:58px;scroll-margin-top:100px}.section h2{margin:0 0 14px;font:700 39px/1 'Barlow Condensed',sans-serif;letter-spacing:-.03em}.section h3{margin:30px 0 10px;font:700 28px/1 'Barlow Condensed',sans-serif}.section>p,.section>ul{color:var(--muted);font-size:15px;line-height:1.72}.callout{margin-top:28px;padding:20px 22px;border:1px solid rgba(180,147,240,.35);border-radius:14px;background:rgba(180,147,240,.08);color:var(--muted);line-height:1.7}.callout strong{color:var(--text)}.install-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.code-card{overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#19161f}.code-label{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--subtle);font-size:12px;font-weight:600}.code-card pre{margin:0;border:0;border-radius:0}.code-card pre,pre{overflow:auto;padding:18px;color:#e9ddff;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}pre{border:1px solid var(--line);border-radius:13px;background:#19161f}code{padding:3px 6px;border-radius:5px;background:var(--surface-3);color:#eadfff;font:0.9em ui-monospace,SFMono-Regular,Consolas,monospace}.code-card code{padding:0;background:transparent}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{color:var(--bright);font-size:12px;letter-spacing:.08em;text-transform:uppercase}td{color:var(--muted)}.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0;list-style:none}.benefits li{padding:17px;border:1px solid var(--line);border-radius:12px;background:rgba(27,24,35,.58);color:var(--muted);line-height:1.6;font-size:14px}.benefits strong{display:block;margin-bottom:5px;color:var(--text)}details{margin:10px 0;padding:16px 18px;border:1px solid var(--line);border-radius:11px;background:rgba(27,24,35,.7)}summary{cursor:pointer;font-weight:600}@media(max-width:800px){.container{width:min(var(--max),calc(100% - 32px))}.layout{display:block}.sidebar{display:none}.content{padding-top:32px}.nav-actions>a:not(.button){display:none}.install-grid,.benefits{grid-template-columns:1fr}.hero{padding:24px}.section h2{font-size:35px}.intro{font-size:18px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     /* Content additions: reuse the tokens above, no new visual language. */
     pre code{padding:0;background:transparent;font-size:inherit}.section>pre,.section>.code-card,.section>.install-grid,.section>.table-wrap{margin:18px 0}.section>.install-grid .code-card{margin:0}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:rgba(27,24,35,.45)}.table-wrap table{margin:0;min-width:560px}.table-wrap tr:last-child td{border-bottom:0}td strong{color:var(--text)}.section h3{scroll-margin-top:100px}.section>p.note{font-size:14px;color:var(--subtle)}.section>ul{padding-left:20px}.section>ul li{margin:4px 0}.sql-pair{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px;margin:18px 0}.sql-pair .code-card{display:flex;flex-direction:column}.sql-pair pre{flex:1}.code-label.sql{color:var(--green)}details p{margin:12px 0 0;color:var(--muted);font-size:14.5px;line-height:1.7}summary::marker{color:var(--purple)}summary:hover{color:var(--bright)}.sidebar-inner{max-height:calc(100vh - 140px);overflow-y:auto;padding-right:4px}.side-group{margin:18px 0 6px;color:var(--subtle);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.75}.sidebar a{padding:6px 12px}.sidebar a[aria-current="true"]{border-left-color:var(--purple);color:var(--text);background:rgba(180,147,240,.08)}.mobile-toc{display:none;margin:0 0 24px}.mobile-toc nav{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;margin-top:10px}.mobile-toc a{padding:6px 0;color:var(--muted);text-decoration:none;font-size:14px}a:focus-visible,summary:focus-visible,.button:focus-visible{outline:2px solid var(--bright);outline-offset:3px;border-radius:6px}.benefits code{font-size:.85em}@media(max-width:800px){.mobile-toc{display:block}.sql-pair{grid-template-columns:1fr}.section{padding-top:48px}}
+    /* Syntax colors: IntelliJ New UI Dark. */
+    pre code[class*=language-]{color:#bcbec4}.token.comment{color:#7a7e85;font-style:italic}.token.keyword,.token.boolean{color:#cf8e6d}.token.string,.token.char{color:#6aab73}.token.number{color:#2aacb8}.token.function{color:#56a8f5}.token.annotation{color:#b3ae60}.token.property{color:#c77dbb}.token.constant{font-style:italic}.token.class-name{color:#bcbec4}.token.operator,.token.punctuation{color:#bcbec4}.token.interpolation-punctuation{color:#cf8e6d}.language-toml .token.table{color:#cf8e6d}.language-toml .token.key{color:#c77dbb}.language-sql .token.keyword{color:#cf8e6d}.language-sql .token.function{color:#56a8f5}
+    .site-footer{margin-top:40px;border-top:1px solid var(--line);background:rgba(27,24,35,.55);font-size:14px}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;padding:48px 0 36px}.footer-brand .brand{display:inline-flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font:700 22px/1 'Barlow Condensed',sans-serif}.footer-brand .brand img{width:30px;height:30px;display:block}.footer-brand p{max-width:300px;margin:14px 0 18px;color:var(--muted);line-height:1.6}.footer-cta{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 14px;border:1px solid var(--line-strong);border-radius:10px;color:var(--text);text-decoration:none;font-weight:600}.footer-cta:hover{border-color:var(--purple);color:#fff;background:rgba(180,147,240,.08)}.site-footer h2{margin:4px 0 14px;color:var(--subtle);font:700 11px/1 Barlow,sans-serif;letter-spacing:.14em;text-transform:uppercase}.site-footer ul{margin:0;padding:0;list-style:none}.site-footer li{margin:0 0 10px}.site-footer nav a{color:var(--muted);text-decoration:none}.site-footer nav a:hover{color:var(--text);text-decoration:underline}.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:20px 0 32px;border-top:1px solid var(--line);color:var(--subtle);font-size:13px}.footer-bottom a{color:var(--subtle)}@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px 20px;padding-top:40px}.footer-brand{grid-column:1/-1}}
   </style>
   <script type="application/ld+json">
   {
@@ -98,12 +101,12 @@
         </ul>
       </section>
 
-      <section class="section" id="installation"><h2>Installation</h2><p>roomQL is published on Maven Central under <code>io.github.kotplat.roomql</code>. Add the Android runtime and KSP processor to your version catalog.</p><div class="install-grid"><div class="code-card"><div class="code-label">gradle/libs.versions.toml</div><pre><code>[versions]
+      <section class="section" id="installation"><h2>Installation</h2><p>roomQL is published on Maven Central under <code>io.github.kotplat.roomql</code>. Add the Android runtime and KSP processor to your version catalog.</p><div class="install-grid"><div class="code-card"><div class="code-label">gradle/libs.versions.toml</div><pre><code class="language-toml">[versions]
 roomql = "2.0.0"
 
 [libraries]
 roomql-runtime-android = { module = "io.github.kotplat.roomql:runtime-android", version.ref = "roomql" }
-roomql-ksp-processor = { module = "io.github.kotplat.roomql:ksp-processor", version.ref = "roomql" }</code></pre></div><div class="code-card"><div class="code-label">app/build.gradle.kts</div><pre><code>plugins {
+roomql-ksp-processor = { module = "io.github.kotplat.roomql:ksp-processor", version.ref = "roomql" }</code></pre></div><div class="code-card"><div class="code-label">app/build.gradle.kts</div><pre><code class="language-kotlin">plugins {
     id("com.google.devtools.ksp")
 }
 
@@ -125,7 +128,7 @@ dependencies {
         </tbody></table></div>
       </section>
 
-      <section class="section" id="quick-start"><h2>Quick start</h2><p>Define an entity and a <code>@RawQuery</code> DAO as usual. After one build, KSP generates <code>UserEntityTable</code> in the same package, and optional values drop out of the query when they are <code>null</code>.</p><pre><code>import androidx.room.Dao
+      <section class="section" id="quick-start"><h2>Quick start</h2><p>Define an entity and a <code>@RawQuery</code> DAO as usual. After one build, KSP generates <code>UserEntityTable</code> in the same package, and optional values drop out of the query when they are <code>null</code>.</p><pre><code class="language-kotlin">import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.RawQuery
@@ -171,7 +174,7 @@ fun searchUsers(dao: UserDao, minAge: Int?, status: String?): List&lt;UserEntity
 
       <section class="section" id="filters"><h2>Filters: AND, OR, and optional values</h2>
         <p>Everything inside one <code>where { }</code> block is joined with <code>AND</code>. Use <code>or { }</code> when any one of several conditions is enough — roomQL wraps the group in parentheses so it combines correctly with the surrounding <code>AND</code>s.</p>
-        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code>query {
+        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code class="language-kotlin">query {
     from(UserEntityTable)
     where {
         UserEntityTable.status eq "active"
@@ -180,7 +183,7 @@ fun searchUsers(dao: UserDao, minAge: Int?, status: String?): List&lt;UserEntity
             UserEntityTable.age gt 65
         }
     }
-}</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code>SELECT * FROM users
+}</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code class="language-sql">SELECT * FROM users
 WHERE status = ?
   AND (age &lt; ? OR age &gt; ?)
 
@@ -200,7 +203,7 @@ WHERE status = ?
 
       <section class="section" id="sorting"><h2>Sorting and paging</h2>
         <p>A runtime-chosen sort column has a static workaround — <code>ORDER BY CASE WHEN :sortBy = 'age' THEN age … END</code> bound to a string — but it becomes hard to maintain once a second axis needs to vary with it. roomQL takes a typed column instead. Call <code>orderBy</code> once per sort key to build a multi-column sort.</p>
-        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code>fun page(sort: Column&lt;*&gt;, dir: SortDirection, page: Int) =
+        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code class="language-kotlin">fun page(sort: Column&lt;*&gt;, dir: SortDirection, page: Int) =
     query {
         from(UserEntityTable)
         orderBy(sort, dir)
@@ -209,7 +212,7 @@ WHERE status = ?
         offset(page * 20)
     }
 
-page(UserEntityTable.age, SortDirection.DESC, 2)</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code>SELECT * FROM users
+page(UserEntityTable.age, SortDirection.DESC, 2)</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code class="language-sql">SELECT * FROM users
 ORDER BY age DESC, name ASC
 LIMIT 20 OFFSET 40</code></pre></div></div>
         <p class="note">For a single, fixed set of sort columns, a <code>when</code> dispatch is a good zero-dependency alternative. roomQL pays off when sorting has to compose with an optional join, a runtime <code>groupBy</code>, or a chosen <code>select(...)</code>.</p>
@@ -217,7 +220,7 @@ LIMIT 20 OFFSET 40</code></pre></div></div>
 
       <section class="section" id="aggregates"><h2>Grouping and aggregates</h2>
         <p><code>groupBy</code> collapses rows that share a value; each call adds a column, so <code>groupBy(a); groupBy(b)</code> renders <code>GROUP BY a, b</code>. <code>having { }</code> filters the groups with the same operators as <code>where { }</code>. The aggregates <code>count</code>, <code>countAll</code>, <code>sum</code>, <code>avg</code>, <code>min</code>, and <code>max</code> are typed <code>Expression&lt;T&gt;</code> values usable in <code>select(...)</code>, <code>having { }</code>, and <code>orderBy(...)</code>.</p>
-        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code>query {
+        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code class="language-kotlin">query {
     from(OrderEntityTable)
     groupBy(OrderEntityTable.customerId)
     having { sum(OrderEntityTable.total) gt 100.0 }
@@ -226,7 +229,7 @@ LIMIT 20 OFFSET 40</code></pre></div></div>
         OrderEntityTable.customerId,
         count(OrderEntityTable.id) alias "order_count",
     )
-}</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code>SELECT customerId,
+}</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code class="language-sql">SELECT customerId,
        COUNT(id) AS `order_count`
 FROM orders
 GROUP BY customerId
@@ -244,7 +247,7 @@ ORDER BY COUNT(*) DESC</code></pre></div></div>
 
       <section class="section" id="projections"><h2>Projections with <code>@Projection</code></h2>
         <p>Hand-written aliases are strings, so they can drift: rename a field, forget the matching <code>alias</code>, and that field silently comes back empty. Annotate the result class with <code>@Projection</code> and the KSP processor generates a factory that writes the aliases for you.</p>
-        <pre><code>@Projection
+        <pre><code class="language-kotlin">@Projection
 data class CustomerOrderCount(
     val customerId: Int,
     @ColumnInfo(name = "order_count") val orderCount: Long,
@@ -261,13 +264,13 @@ query {
 
       <section class="section" id="joins"><h2>Joins without column collisions</h2>
         <p>Use <code>JoinType.INNER</code> to keep only matching rows or <code>JoinType.LEFT</code> to keep every row from the first table; call <code>join</code> again for more tables. When a column name appears in more than one table, roomQL aliases it to <code>table__column</code> so a cursor never silently overwrites one <code>id</code> with another.</p>
-        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code>query {
+        <div class="sql-pair"><div class="code-card"><div class="code-label">Kotlin</div><pre><code class="language-kotlin">query {
     from(UserEntityTable)
     join(OrderEntityTable, JoinType.INNER) {
         on { UserEntityTable.id eq OrderEntityTable.userId }
     }
     where { OrderEntityTable.status eq "paid" }
-}</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code>SELECT users.id AS users__id, name, age,
+}</code></pre></div><div class="code-card"><div class="code-label sql">Generated SQL</div><pre><code class="language-sql">SELECT users.id AS users__id, name, age,
   users.status AS users__status,
   orders.id AS orders__id, userId, total,
   orders.status AS orders__status
@@ -275,7 +278,7 @@ FROM users
 INNER JOIN orders ON users.id = orders.userId
 WHERE orders.status = ?</code></pre></div></div>
         <p>Clashing columns are also table-qualified inside <code>where</code>, <code>having</code>, <code>groupBy</code>, and <code>orderBy</code>. Map the result with your own data class: unique columns keep their bare names, collided ones use the alias.</p>
-        <pre><code>data class UserOrder(
+        <pre><code class="language-kotlin">data class UserOrder(
     @ColumnInfo(name = "name")       val userName: String,   // unique → bare
     @ColumnInfo(name = "total")      val orderTotal: Double, // unique → bare
     @ColumnInfo(name = "users__id")  val userId: Int,        // collided → aliased
@@ -286,7 +289,7 @@ WHERE orders.status = ?</code></pre></div></div>
 
       <section class="section" id="reactive"><h2>Blocking, suspend, and Flow</h2>
         <p>You build the query the same way every time. The return style depends only on how the DAO method is declared, because <code>.toQuery()</code> produces an ordinary <code>SupportSQLiteQuery</code>.</p>
-        <pre><code>@Dao
+        <pre><code class="language-kotlin">@Dao
 interface UserDao {
     @RawQuery
     fun search(q: SupportSQLiteQuery): List&lt;UserEntity&gt;
@@ -302,7 +305,7 @@ interface UserDao {
 
       <section class="section" id="testing"><h2>Test the SQL without a device</h2>
         <p><code>query { }</code> returns a plain <code>RoomQlQuery</code> from a pure-JVM module, so you can assert on the generated SQL and arguments in an ordinary JUnit test — no emulator, no Robolectric, no database.</p>
-        <pre><code>@Test
+        <pre><code class="language-kotlin">@Test
 fun `null status is omitted`() {
     val status: String? = null
     val q = query {
@@ -380,7 +383,21 @@ fun `null status is omitted`() {
       </section>
     </div>
   </main>
-  <footer class="container"><span>KotPlat · built in the open</span><div class="footer-links"><a href="/">Back to KotPlat</a><a href="https://github.com/KotPlat/roomql">GitHub ↗</a></div></footer>
+  <footer class="site-footer" aria-label="Site map">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/"><img src="/assets/logo.svg" alt="" width="30" height="30"><span>KotPlat</span></a>
+          <p>Focused open-source tools and practical notes for Kotlin, Android, KMP, and CMP.</p>
+          <a class="footer-cta" href="https://github.com/KotPlat/roomql/discussions">Join the discussion <span aria-hidden="true">↗</span></a>
+        </div>
+        <nav aria-labelledby="fm-kotplat"><h2 id="fm-kotplat">KotPlat</h2><ul><li><a href="/">Home</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#about">About</a></li><li><a href="https://github.com/KotPlat">GitHub ↗</a></li></ul></nav>
+        <nav aria-labelledby="fm-roomql"><h2 id="fm-roomql">roomQL</h2><ul><li><a href="/roomql/">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#quick-start">Quick start</a></li><li><a href="#api-overview">API at a glance</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/docs/USAGE.md">Usage guide ↗</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/docs/API.md">API reference ↗</a></li></ul></nav>
+        <nav aria-labelledby="fm-community"><h2 id="fm-community">Community</h2><ul><li><a href="https://github.com/KotPlat/roomql/discussions">Discussions ↗</a></li><li><a href="https://github.com/KotPlat/roomql/discussions/categories/q-a">Ask a question ↗</a></li><li><a href="https://github.com/KotPlat/roomql/issues">Report an issue ↗</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/CONTRIBUTING.md">Contributing ↗</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/CHANGELOG.md">Changelog ↗</a></li></ul></nav>
+      </div>
+      <div class="footer-bottom"><span>© 2026 KotPlat · built in the open</span><span><a href="/sitemap.xml">sitemap.xml</a> · Apache-2.0</span></div>
+    </div>
+  </footer>
   <script>
     (function(){
       var links=document.querySelectorAll('.sidebar a[href^="#"]');
@@ -395,6 +412,15 @@ fun `null status is omitted`() {
       },{rootMargin:'-20% 0px -70% 0px'});
       Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
     })();
+  </script>
+  <script data-manual src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" integrity="sha512-9khQRAUBYEJDCDVP2yw3LRUQvjJ0Pjx0EShmaQjcHa6AXiOv6qHQu9lCAIR8O+/D8FtaCoJ2c0Tf9Xo7hYH01Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" integrity="sha512-/Rynaa6ehLZJO9fdk+EUsgiOdJqFSFUB4Qgy+gP4vU4U1DrmPJWypfXe1CgyaV7rRdZjGxdpLe9djxhx1ZHvqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-kotlin.min.js" integrity="sha512-nLUQ1JXk2Kj5a8FlfriL+WmiGbAq3W/dQirx3IlVfkpU7byrzLD19pJnYsG8vPTDvsRMpQDVSezvzkKUNcqUSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" integrity="sha512-sijCOJblSCXYYmXdwvqV0tak8QJW5iy2yLB1wAbbLc3OOIueqymizRFWUS/mwKctnzPKpNdPJV3aK1zlDMJmXQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" integrity="sha512-R9JG7uVdcjWlZvEWyP3KfxtexvT1uIlKUF/dYVmZRbvJyMobK6zGCpIM2gLVqYjLSYeL/zBjOVpP7vXxVtzfCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // IDE-style extras: trailing-lambda calls, enum constants, property access.
+    if(window.Prism){Prism.languages.insertBefore('kotlin','keyword',{'lambda-call':{pattern:/\b[a-z]\w*(?=\s*\{)/,alias:'function'},constant:{pattern:/(\.)[A-Z][A-Z0-9_]+\b/,lookbehind:true,alias:'property'}});Prism.languages.insertBefore('kotlin','function',{property:{pattern:/(\.)[a-z]\w*\b(?!\s*[({])/,lookbehind:true}});Prism.highlightAll();}
   </script>
 </body>
 </html>

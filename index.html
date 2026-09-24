@@ -121,9 +121,7 @@
     .cta { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 36px; border: 1px solid var(--line-strong); border-radius: 16px; background: radial-gradient(circle at 90% 15%, rgba(155,111,242,.17), transparent 33%), var(--surface); }
     .cta h2 { font-size: clamp(32px, 4vw, 45px); }
     .cta p { max-width: 500px; margin: 10px 0 0; color: var(--muted); line-height: 1.55; }
-    footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 28px 0 38px; color: var(--subtle); font-size: 13px; }
-    footer a { color: var(--muted); text-decoration: none; }
-    .footer-links { display: flex; gap: 20px; }
+    .site-footer{margin-top:40px;border-top:1px solid var(--line);background:rgba(27,24,35,.55);font-size:14px}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;padding:48px 0 36px}.footer-brand .brand{display:inline-flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font:700 22px/1 'Barlow Condensed',sans-serif}.footer-brand .brand img{width:30px;height:30px;display:block}.footer-brand p{max-width:300px;margin:14px 0 18px;color:var(--muted);line-height:1.6}.footer-cta{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 14px;border:1px solid var(--line-strong);border-radius:10px;color:var(--text);text-decoration:none;font-weight:600}.footer-cta:hover{border-color:var(--purple);color:#fff;background:rgba(180,147,240,.08)}.site-footer h2{margin:4px 0 14px;color:var(--subtle);font:700 11px/1 Barlow,sans-serif;letter-spacing:.14em;text-transform:uppercase}.site-footer ul{margin:0;padding:0;list-style:none}.site-footer li{margin:0 0 10px}.site-footer nav a{color:var(--muted);text-decoration:none}.site-footer nav a:hover{color:var(--text);text-decoration:underline}.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:20px 0 32px;border-top:1px solid var(--line);color:var(--subtle);font-size:13px}.footer-bottom a{color:var(--subtle)}@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px 20px;padding-top:40px}.footer-brand{grid-column:1/-1}}
 
     @media (max-width: 760px) {
       .container { width: min(var(--max), calc(100% - 36px)); }
@@ -142,7 +140,6 @@
       .project-card, .empty-card { min-height: 260px; }
       .cta { display: block; padding: 28px; }
       .cta .button { margin-top: 24px; }
-      footer { align-items: flex-start; flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
   </style>
@@ -225,7 +222,21 @@
       </section>
     </main>
 
-    <footer class="container"><span>KotPlat · built in the open</span><div class="footer-links"><a href="https://github.com/KotPlat">GitHub</a><a href="/roomql/">roomQL</a></div></footer>
+    <footer class="site-footer" aria-label="Site map">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="/"><img src="/assets/logo.svg" alt="" width="30" height="30"><span>KotPlat</span></a>
+            <p>Focused open-source tools and practical notes for Kotlin, Android, KMP, and CMP.</p>
+            <a class="footer-cta" href="https://github.com/KotPlat/roomql/discussions">Join the discussion <span aria-hidden="true">↗</span></a>
+          </div>
+          <nav aria-labelledby="fm-kotplat"><h2 id="fm-kotplat">KotPlat</h2><ul><li><a href="/">Home</a></li><li><a href="#projects">Projects</a></li><li><a href="#about">About</a></li><li><a href="https://github.com/KotPlat">GitHub ↗</a></li></ul></nav>
+          <nav aria-labelledby="fm-roomql"><h2 id="fm-roomql">roomQL</h2><ul><li><a href="/roomql/">Overview</a></li><li><a href="/roomql/#installation">Installation</a></li><li><a href="/roomql/#quick-start">Quick start</a></li><li><a href="/roomql/#api-overview">API at a glance</a></li><li><a href="/roomql/#faq">FAQ</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/docs/USAGE.md">Usage guide ↗</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/docs/API.md">API reference ↗</a></li></ul></nav>
+          <nav aria-labelledby="fm-community"><h2 id="fm-community">Community</h2><ul><li><a href="https://github.com/KotPlat/roomql/discussions">Discussions ↗</a></li><li><a href="https://github.com/KotPlat/roomql/discussions/categories/q-a">Ask a question ↗</a></li><li><a href="https://github.com/KotPlat/roomql/issues">Report an issue ↗</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/CONTRIBUTING.md">Contributing ↗</a></li><li><a href="https://github.com/KotPlat/roomql/blob/master/CHANGELOG.md">Changelog ↗</a></li></ul></nav>
+        </div>
+        <div class="footer-bottom"><span>© 2026 KotPlat · built in the open</span><span><a href="/sitemap.xml">sitemap.xml</a> · Apache-2.0</span></div>
+      </div>
+    </footer>
   </div>
 </body>
 </html>
