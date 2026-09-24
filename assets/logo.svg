@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512">
-  <polygon points="16,10 30,10 30,90 16,90" fill="#1c1a22"></polygon>
-  <polygon points="30,44 62,32 96,4 100,10 66,40 30,52" fill="#7b4fe0"></polygon>
-  <polygon points="30,56 66,60 100,92 92,96 30,64" fill="#e2506b"></polygon>
-  <rect x="8" y="47" width="26" height="6" fill="#1c1a22"></rect>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512" role="img" aria-labelledby="title desc">
+  <title id="title">KotPlat logo</title>
+  <desc id="desc">KotPlat geometric mark in light, purple, and pink.</desc>
+  <polygon points="16,10 30,10 30,90 16,90" fill="#f1eef7"/>
+  <polygon points="30,44 62,32 96,4 100,10 66,40 30,52" fill="#9b6ff2"/>
+  <polygon points="30,56 66,60 100,92 92,96 30,64" fill="#f0708a"/>
+  <rect x="8" y="47" width="26" height="6" fill="#f1eef7"/>
 </svg>
